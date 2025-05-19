@@ -108,6 +108,7 @@ cmb_category.pack(side="left", padx=(0, 15))
 btn_fetch = ttk.Button(frame_top, text="📥 Haberleri Getir")
 btn_fetch.pack(side="left", padx=(0, 5))
 
+# Yapay zekadan yardım alındı, resim 1
 btn_load_more = ttk.Button(frame_top, text="📄 Daha Fazla Haber Getir")
 btn_load_more.pack(side="left", padx=(0, 15))
 
@@ -121,9 +122,11 @@ btn_search.pack(side="left", padx=(5, 0))
 btn_export = ttk.Button(frame_top, text="📤 Dışa Aktar")
 btn_export.pack(side="left", padx=(5, 0))
 
+# Yapay zekadan yardım alındı, resim 3
 btn_favs = ttk.Button(frame_top, text="⭐ Favoriler")
 btn_favs.pack(side="left", padx=(5, 0))
 
+# Yapay zekadan yardım alındı, resim 6
 # Liste Alanı
 frame_list = ttk.Frame(root)
 frame_list.pack(fill="both", expand=True, padx=10, pady=10)
@@ -207,6 +210,8 @@ def load_more():
     except Exception as e:
         messagebox.showerror("Hata", str(e))
 
+# Yapay zekadan yardım alındı, resim 4
+
 
 def search_articles(keyword):
     tree.delete(*tree.get_children())
@@ -226,6 +231,8 @@ def search_articles(keyword):
         tree.insert("", "end", values=(title[:120], source))
         news_data.append((title, desc, url, img_url))
 
+# Yapay zekadan yardım alındı, resim 4
+
 
 def export_to_csv(data):
     if not data:
@@ -244,6 +251,8 @@ def export_to_csv(data):
             writer.writerow(row)
     messagebox.showinfo("Başarılı", "Haberler başarıyla dışa aktarıldı.")
 
+# Yapay zekadan yardım alındı, resim 5
+
 
 def open_detail(event):
     selected = tree.selection()
@@ -257,6 +266,7 @@ def open_detail(event):
     win.geometry("600x800")
     win.configure(bg="#ffffff")
 
+    # Yapay zekadan yardım alındı, resim 3
     def add_to_favorites():
         c.execute("SELECT is_favorite FROM articles WHERE url=?", (url,))
         result = c.fetchone()
@@ -301,7 +311,7 @@ def open_detail(event):
     btn_browser.pack(pady=5)
 
 
-# Event bindings
+# Yapay zekadan yardım alındı
 btn_fetch.config(command=refresh)
 btn_load_more.config(command=load_more)
 btn_search.config(command=lambda: search_articles(entry_search.get()))
@@ -312,7 +322,6 @@ cmb_country.bind("<Return>", lambda e: refresh())
 cmb_category.bind("<Return>", lambda e: refresh())
 tree.bind("<Double-1>", open_detail)
 
-# Initial load
 load_articles("tr", "general")
 root.mainloop()
 
